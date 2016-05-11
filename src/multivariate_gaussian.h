@@ -25,7 +25,7 @@ struct MultivariateGaussian : Rng {
         spt_(dim){
     }
 
-    VectorXd dev() {
+    void dev(double* sample) {
         int i;
         double u, v, x, y, q;
 
@@ -41,7 +41,8 @@ struct MultivariateGaussian : Rng {
             spt_(i) = v/u;
         }
 
-        return chol_.matrixL() * spt_ + mean_;
+        Map<VectorXd> pt(sample, dim_);
+        pt = chol_.matrixL() * spt_ + mean_;
     }
 };
 

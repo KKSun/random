@@ -9,18 +9,19 @@ int main(int argc, char** argv) {
     const int dim = 2;
     double mean[dim] = {0, 0};
     double cov[dim*dim] = {1, 0, 0, 1};
-    int seed = 0;
+    unsigned long long seed = 0;
     int numTrials = 1000000;
     int i, j;
+    double rawSample[dim];
     MultivariateGaussian normalDist(mean, dim, cov, dim, dim, seed);
-    VectorXd sample(dim);
+    Map<VectorXd> sample(rawSample, dim);
     VectorXd estimatedMean(dim);
     MatrixXd estimatedCov(dim, dim);
     estimatedMean = VectorXd::Zero(dim);
     estimatedCov = MatrixXd::Zero(dim, dim);
 
     for (i = 0; i < numTrials ; i++) {
-        sample = normalDist.dev();
+        normalDist.dev(rawSample);
         estimatedMean += sample;
         estimatedCov += (sample - normalDist.mean_) * (sample - normalDist.mean_).transpose();
     }
