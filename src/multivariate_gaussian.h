@@ -16,7 +16,7 @@ struct MultivariateGaussian : Rng {
     LLT<MatrixXd> chol_;
     VectorXd spt_;
 
-    MultivariateGaussian(double* mean, int dim, double* cov, int rows, int cols, unsigned long long seed) :
+    MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, unsigned long long seed) :
         Rng(seed),
         dim_(dim),
         mean_(mean, dim),
