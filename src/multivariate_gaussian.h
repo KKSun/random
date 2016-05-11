@@ -11,8 +11,8 @@ using namespace Eigen;
 struct MultivariateGaussian : Rng {
 
     int dim_;
-    Map<VectorXd> mean_;
-    Map<MatrixXd> cov_;
+    Map<const VectorXd> mean_;
+    Map<const MatrixXd> cov_;
     LLT<MatrixXd> chol_;
     VectorXd spt_;
 
