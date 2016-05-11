@@ -25,7 +25,7 @@ struct MultivariateGaussian : Rng {
         spt_(dim){
     }
 
-    void dev(double* sample) {
+    void dev(double* sample, int dim) {
         int i;
         double u, v, x, y, q;
 
