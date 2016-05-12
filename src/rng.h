@@ -8,25 +8,13 @@
 struct Rng {
     unsigned long long v;
 
-    Rng(unsigned long long j) : v(4101842887655122017LL) {
-        v ^= j;
-        v = int64();
-    }
+    Rng(unsigned long long j);
 
-    inline unsigned long long int64() {
-        v ^= v >> 21;
-        v ^= v << 35;
-        v ^= v >> 4;
-        return v * 2685821657736338717LL;
-    }
+    unsigned long long int64();
 
-    inline double doub() {
-        return 5.42101086242752217E-20 * int64();
-    }
+    double doub();
 
-    inline unsigned int int32() {
-        return static_cast<unsigned int>(int64());
-    }
+    unsigned int int32();
 };
 
 #endif //MULTIVARIATE_GAUSSIAN_RNG_H
