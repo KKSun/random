@@ -21,7 +21,7 @@ int main(int argc, char** argv) {
     estimatedCov = MatrixXd::Zero(dim, dim);
 
     for (i = 0; i < numTrials ; i++) {
-        normalDist.dev(rawSample);
+        normalDist.dev(rawSample, dim);
         estimatedMean += sample;
         estimatedCov += (sample - normalDist.mean_) * (sample - normalDist.mean_).transpose();
     }
