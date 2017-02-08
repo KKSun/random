@@ -1,4 +1,4 @@
-#include "multivariate_gaussian.h"
+#include "../include/multivariate_gaussian.h"
 
 
 MultivariateGaussian::MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, unsigned long long seed) :

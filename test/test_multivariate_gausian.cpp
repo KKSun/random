@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "multivariate_gaussian.h"
+#include "../include/multivariate_gaussian.h"
 
 using namespace std;
 using namespace Eigen;

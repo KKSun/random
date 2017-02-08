@@ -1,4 +1,4 @@
-#include "rng.h"
+#include "../include/rng.h"
 
 Rng::Rng(unsigned long long j) : v(4101842887655122017LL) {
     v ^= j;

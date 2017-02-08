@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "rng.h"
+#include "../include/rng.h"
 
 using namespace std;
 
