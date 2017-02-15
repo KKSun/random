@@ -13,7 +13,7 @@ find_package(Eigen3 REQUIRED)
 # Set include directories.
 #
 
-include_directories(src ${EIGEN3_INCLUDE_DIR})
+include_directories(include ${EIGEN3_INCLUDE_DIR})
 
 
 #
