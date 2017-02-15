@@ -5,7 +5,11 @@
 #ifndef MULTIVARIATE_GAUSSIAN_RNG_H
 #define MULTIVARIATE_GAUSSIAN_RNG_H
 
+/**
+ * \brief This struct implements Ranq1 in Numerical Recipe, 3rd edition.
+ */
 struct Rng {
+
     unsigned long long v;
 
     Rng(unsigned long long j);

@@ -1,7 +1,8 @@
 #include "../include/multivariate_gaussian.h"
 
 
-MultivariateGaussian::MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, unsigned long long seed) :
+MultivariateGaussian::MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, 
+                                           unsigned long long seed) :
     Rng(seed),
     dim_(dim),
     mean_(mean, dim),
@@ -26,6 +27,6 @@ void MultivariateGaussian::dev(double* sample, int dim) {
         spt_(i) = v/u;
     }
 
-    Map<VectorXd> pt(sample, dim_);
+    Eigen::Map<Eigen::VectorXd> pt(sample, dim_);
     pt = chol_.matrixL() * spt_ + mean_;
 }
