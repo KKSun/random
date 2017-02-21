@@ -8,6 +8,7 @@
 
 /**
  * \brief This struct generates random vectors sampled from a multivariable Gaussian distribution.
+ *        It implements multinormaldev in Numerical Recipe, 3rd edition.
  */
 struct MultivariateGaussian : Rng {
 
@@ -19,7 +20,12 @@ struct MultivariateGaussian : Rng {
 
     MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, unsigned long long seed);
 
+    MultivariateGaussian(const Eigen::VectorXd &mean, const Eigen::MatrixXd &cov, unsigned long long seed);
+
     void dev(double* sample, int dim);
+
+    template<typename Derived>
+    void dev(Eigen::MatrixBase<Derived> &sample);
 };
 
 #endif //MULTIVARIATE_GAUSSIAN_MULTIVARIATE_GAUSSIAN_H

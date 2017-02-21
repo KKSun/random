@@ -8,15 +8,34 @@ MultivariateGaussian::MultivariateGaussian(const double* mean, int dim, const do
     mean_(mean, dim),
     cov_(cov, rows, cols),
     chol_(cov_),
-    spt_(dim){
+    spt_(dim)
+{}
+
+MultivariateGaussian::MultivariateGaussian(const Eigen::VectorXd &mean, const Eigen::MatrixXd &cov, unsigned long long seed) :
+    Rng(seed),
+    dim_(mean.size()),
+    mean_(mean.data(), mean.size()),
+    cov_(cov.data(), cov.rows(), cov.cols()),
+    chol_(cov_),
+    spt_(dim_)
+{}
+
+void MultivariateGaussian::dev(double* sample, int dim)
+{
+    Eigen::Map<Eigen::VectorXd> map(sample, dim_);
+    dev(map);
 }
 
-void MultivariateGaussian::dev(double* sample, int dim) {
+template<typename Derived>
+void MultivariateGaussian::dev(Eigen::MatrixBase<Derived> &sample)
+{
     int i;
     double u, v, x, y, q;
 
-    for (i = 0; i < dim_; i++) {
-        do {
+    for (i = 0; i < dim_; i++)
+    {
+        do
+        {
             u = doub();
             v = 1.7156 * (doub()-0.5);
             x = u - 0.449871;
@@ -27,6 +46,6 @@ void MultivariateGaussian::dev(double* sample, int dim) {
         spt_(i) = v/u;
     }
 
-    Eigen::Map<Eigen::VectorXd> pt(sample, dim_);
-    pt = chol_.matrixL() * spt_ + mean_;
+    sample.resize(dim_);
+    sample = chol_.matrixL() * spt_ + mean_;
 }
