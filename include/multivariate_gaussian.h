@@ -13,12 +13,10 @@
 struct MultivariateGaussian : Rng {
 
     int dim_;
-    Eigen::Map<const Eigen::VectorXd> mean_;
-    Eigen::Map<const Eigen::MatrixXd> cov_;
+    Eigen::VectorXd mean_;
+    Eigen::MatrixXd cov_;
     Eigen::LLT<Eigen::MatrixXd> chol_;
     Eigen::VectorXd spt_;
-
-    MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, unsigned long long seed);
 
     MultivariateGaussian(const Eigen::VectorXd &mean, const Eigen::MatrixXd &cov, unsigned long long seed);
 

@@ -7,13 +7,15 @@ using namespace Eigen;
 
 int main(int argc, char** argv) {
     const int dim = 2;
-    double mean[dim] = {0, 0};
-    double cov[dim*dim] = {1, 0, 0, 1};
+    Eigen::VectorXd mean(dim);
+    Eigen::MatrixXd cov(dim, dim);
+    mean << 0, 0;
+    cov << 1, 0, 0, 1;
     unsigned long long seed = 0;
     int numTrials = 1000000;
     int i, j;
     double rawSample[dim];
-    MultivariateGaussian normalDist(mean, dim, cov, dim, dim, seed);
+    MultivariateGaussian normalDist(mean, cov, seed);
     Map<VectorXd> sample(rawSample, dim);
     VectorXd estimatedMean(dim);
     MatrixXd estimatedCov(dim, dim);

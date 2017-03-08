@@ -1,21 +1,11 @@
 #include "../include/multivariate_gaussian.h"
 
 
-MultivariateGaussian::MultivariateGaussian(const double* mean, int dim, const double* cov, int rows, int cols, 
-                                           unsigned long long seed) :
-    Rng(seed),
-    dim_(dim),
-    mean_(mean, dim),
-    cov_(cov, rows, cols),
-    chol_(cov_),
-    spt_(dim)
-{}
-
 MultivariateGaussian::MultivariateGaussian(const Eigen::VectorXd &mean, const Eigen::MatrixXd &cov, unsigned long long seed) :
     Rng(seed),
-    dim_(mean.size()),
-    mean_(mean.data(), mean.size()),
-    cov_(cov.data(), cov.rows(), cov.cols()),
+    dim_(static_cast<int>(mean.size())),
+    mean_(mean),
+    cov_(cov),
     chol_(cov_),
     spt_(dim_)
 {}
